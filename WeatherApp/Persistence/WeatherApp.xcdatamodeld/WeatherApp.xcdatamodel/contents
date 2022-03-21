@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedCity" representedClassName="ManagedCity" syncable="YES">
+        <attribute name="lattlong" optional="YES" attributeType="String"/>
+        <attribute name="locationType" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="woeid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedForecast" inverseName="city" inverseEntity="ManagedForecast"/>
+    </entity>
+    <entity name="ManagedConsolidatedWeather" representedClassName="ManagedConsolidatedWeather" syncable="YES">
+        <attribute name="airPresure" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="applicableData" optional="YES" attributeType="String"/>
+        <attribute name="created" optional="YES" attributeType="String"/>
+        <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="maxTemp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minTemp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="predictability" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="theTemp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="visibility" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weatherStateAbbr" optional="YES" attributeType="String"/>
+        <attribute name="weatherStateName" optional="YES" attributeType="String"/>
+        <attribute name="windDirection" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="windDirectionCompass" optional="YES" attributeType="String"/>
+        <attribute name="windSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedForecast" inverseName="consolidatedWeather" inverseEntity="ManagedForecast"/>
+    </entity>
+    <entity name="ManagedForecast" representedClassName="ManagedForecast" syncable="YES">
+        <attribute name="lattLong" optional="YES" attributeType="String"/>
+        <attribute name="locationType" optional="YES" attributeType="String"/>
+        <attribute name="sunRise" optional="YES" attributeType="String"/>
+        <attribute name="sunSet" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="timezone" optional="YES" attributeType="String"/>
+        <attribute name="timezoneName" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="woeid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedCity" inverseName="forecast" inverseEntity="ManagedCity"/>
+        <relationship name="consolidatedWeather" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedConsolidatedWeather" inverseName="forecast" inverseEntity="ManagedConsolidatedWeather"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedParent" inverseName="forecast" inverseEntity="ManagedParent"/>
+        <relationship name="source" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedSource" inverseName="forecast" inverseEntity="ManagedSource"/>
+    </entity>
+    <entity name="ManagedParent" representedClassName="ManagedParent" syncable="YES">
+        <attribute name="lattLong" optional="YES" attributeType="String"/>
+        <attribute name="locationType" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="woeid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedForecast" inverseName="parent" inverseEntity="ManagedForecast"/>
+    </entity>
+    <entity name="ManagedSource" representedClassName="ManagedSource" syncable="YES">
+        <attribute name="crawlRate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedForecast" inverseName="source" inverseEntity="ManagedForecast"/>
+    </entity>
+    <elements>
+        <element name="ManagedCity" positionX="-1273.789245605469" positionY="-2730.309356689453" width="128" height="118"/>
+        <element name="ManagedConsolidatedWeather" positionX="-709.6064453125" positionY="-2700.757446289062" width="128" height="269"/>
+        <element name="ManagedForecast" positionX="-1041.772827148438" positionY="-2706.784149169922" width="128" height="224"/>
+        <element name="ManagedParent" positionX="-1270.840942382812" positionY="-2429.266937255859" width="128" height="118"/>
+        <element name="ManagedSource" positionX="-1074.104431152344" positionY="-2390.771484375" width="128" height="118"/>
+    </elements>
+</model>
